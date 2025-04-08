@@ -1,0 +1,14 @@
+// MARK: - Common
+"loading.title" = "Loading %@...";
+"video.loading.failed" = "Failed to load video";
+"request.failed" = "Something went wrong! Please try again.";
+"tryAgain" = "Try again";
+
+// MARK: - Episode list
+"episodeList.title" = "Episodes";
+
+// MARK: - Episode Detail
+"episodeDetail.description.title" = "Description";
+"episodeDetail.duration.title" = "Duration";
+"episodeDetail.unavailable.description" = "No description available";
+"episodeDetail.unavailable.duration" = "No duration available";

@@ -13,7 +13,7 @@ struct StreamingApp: App {
     // MARK: - Properties
     var body: some Scene {
         WindowGroup {
-            EpisodesListView()
+            EpisodeListView()
         }
     }
 }

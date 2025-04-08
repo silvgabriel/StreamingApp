@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "7FB54906-F655-4390-83CE-D107430E04EA",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:StreamingApp.xcodeproj",
+      "identifier" : "6DCA91142DA07502003E543C",
+      "name" : "StreamingApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:StreamingApp.xcodeproj",
+        "identifier" : "6DCA91242DA07505003E543C",
+        "name" : "StreamingAppTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/AppNetwork",
+        "identifier" : "AppNetworkTests",
+        "name" : "AppNetworkTests"
+      }
+    }
+  ],
+  "version" : 1
+}

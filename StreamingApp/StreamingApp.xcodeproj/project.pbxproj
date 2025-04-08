@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6DCA91672DA07AC3003E543C /* AppNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 6DCA91662DA07AC3003E543C /* AppNetwork */; };
 		6DCA916A2DA07FFF003E543C /* AppNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 6DCA91692DA07FFF003E543C /* AppNetwork */; };
+		6DCA91992DA08B45003E543C /* AppNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 6DCA91982DA08B45003E543C /* AppNetwork */; };
+		6DCA919C2DA08BC7003E543C /* AppNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 6DCA919B2DA08BC7003E543C /* AppNetwork */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,8 +24,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D5090812DA4ADA000C6FFB8 /* StreamingApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = StreamingApp.xctestplan; sourceTree = "<group>"; };
 		6DCA91152DA07502003E543C /* StreamingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DCA91252DA07505003E543C /* StreamingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DF3DF982DA49D29001DEA1E /* AppNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppNetwork; path = ../AppNetwork; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DCA91992DA08B45003E543C /* AppNetwork in Frameworks */,
+				6DCA919C2DA08BC7003E543C /* AppNetwork in Frameworks */,
 				6DCA91672DA07AC3003E543C /* AppNetwork in Frameworks */,
 				6DCA916A2DA07FFF003E543C /* AppNetwork in Frameworks */,
 			);
@@ -62,8 +68,11 @@
 		6DCA910C2DA07502003E543C = {
 			isa = PBXGroup;
 			children = (
+				6D5090812DA4ADA000C6FFB8 /* StreamingApp.xctestplan */,
+				6DF3DF982DA49D29001DEA1E /* AppNetwork */,
 				6DCA91172DA07502003E543C /* StreamingApp */,
 				6DCA91282DA07505003E543C /* StreamingAppTests */,
+				6DF3DF362DA48C42001DEA1E /* Frameworks */,
 				6DCA91162DA07502003E543C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,6 +84,13 @@
 				6DCA91252DA07505003E543C /* StreamingAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6DF3DF362DA48C42001DEA1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +116,8 @@
 			packageProductDependencies = (
 				6DCA91662DA07AC3003E543C /* AppNetwork */,
 				6DCA91692DA07FFF003E543C /* AppNetwork */,
+				6DCA91982DA08B45003E543C /* AppNetwork */,
+				6DCA919B2DA08BC7003E543C /* AppNetwork */,
 			);
 			productName = StreamingApp;
 			productReference = 6DCA91152DA07502003E543C /* StreamingApp.app */;
@@ -116,6 +134,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6DF3DF352DA4814F001DEA1E /* PBXTargetDependency */,
 				6DCA91272DA07505003E543C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -214,6 +233,10 @@
 			isa = PBXTargetDependency;
 			productRef = 6DCA916F2DA08623003E543C /* SwiftLintBuildToolPlugin */;
 		};
+		6DF3DF352DA4814F001DEA1E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 6DF3DF342DA4814F001DEA1E /* SwiftLintBuildToolPlugin */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -276,6 +299,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -332,6 +356,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -348,10 +373,14 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StreamingApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -382,10 +411,14 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StreamingApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,6 +536,19 @@
 			productName = AppNetwork;
 		};
 		6DCA916F2DA08623003E543C /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DCA916D2DA08130003E543C /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+		6DCA91982DA08B45003E543C /* AppNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppNetwork;
+		};
+		6DCA919B2DA08BC7003E543C /* AppNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppNetwork;
+		};
+		6DF3DF342DA4814F001DEA1E /* SwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6DCA916D2DA08130003E543C /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
 			productName = "plugin:SwiftLintBuildToolPlugin";
