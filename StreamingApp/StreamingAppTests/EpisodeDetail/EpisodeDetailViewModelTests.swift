@@ -48,7 +48,7 @@ struct EpisodeDetailViewModelTests {
         await viewModel.setupPlayer()
 
         let expectedURL = URL(string: videoURL)
-        let avPlayerURL = (viewModel.player?.currentItem?.asset as? AVURLAsset)?.url
+        let avPlayerURL = await (viewModel.player?.currentItem?.asset as? AVURLAsset)?.url
 
         #expect(avPlayerURL == expectedURL)
     }
