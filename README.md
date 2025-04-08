@@ -2,6 +2,7 @@
 
 A simple project that uses an API to list mocked episodes and play their respective videos.
 
+https://github.com/user-attachments/assets/8c68ea13-54f0-4018-978e-7b2d786f226d
 
 ## Considerations
 ### Assumptions or limitations
