@@ -14,3 +14,8 @@ No problems other than the VideoPlayer limitation I mentioned above.
 I have experience using MVVM in small and large applications and, in my opinion, it has always worked very well, allowing us to create clean, organized and scalable code.
 
 The learning curve is short and suits all developers regardless of level and it is an architecture that works very similarly in both UIKit and SwiftUI, allowing us to use both frameworks at the same time.
+
+### Requirements
+iOS 18+
+
+Developed using iPhone 15 Pro with iOS 18.4
