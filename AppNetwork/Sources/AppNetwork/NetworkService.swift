@@ -27,20 +27,40 @@ public class NetworkService<T: APIProtocol>: @unchecked Sendable {
     /// - Returns: The response data from the network request or fallback JSON if available.
     /// - Throws: NetworkError if the request fails and no fallback is available.
     public func request(_ apiData: T, body: Encodable? = nil) async throws -> Data {
-        let urlRequest = try apiData.buildURLRequest(requestBody: body?.encoded())
-        let (data, response) = try await executor.data(for: urlRequest)
+        do {
+            let urlRequest = try apiData.buildURLRequest(requestBody: body?.encoded())
+            let (data, response) = try await executor.data(for: urlRequest)
 
-        guard response.isSuccess() else {
-            if let fallbackJson = apiData.fallbackJSONFile,
-               let path = Bundle.main.path(forResource: fallbackJson, ofType: "json"),
-               let fallbackData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
-                return fallbackData
+            guard response.isSuccess() else {
+                if let data = getLocalJSONData(using: apiData) {
+                    return data
+                }
+
+                throw NetworkError.requestFailed(data: data, triedLocalJson: apiData.fallbackJSONFile != nil)
             }
 
-            throw NetworkError.requestFailed(data: data, triedLocalJson: apiData.fallbackJSONFile != nil)
+            return data
+        } catch {
+            if let data = getLocalJSONData(using: apiData) {
+                return data
+            }
+
+            throw error
+        }
+    }
+
+    // MARK: - Private Methods
+    /// Attempts to load local fallback JSON data for the given API data.
+    /// - Parameter apiData: The API endpoint configuration conforming to APIProtocol.
+    /// - Returns: The contents of the fallback JSON file as `Data`, or `nil` if not found.
+    private func getLocalJSONData(using apiData: T) -> Data? {
+        if let fallbackJson = apiData.fallbackJSONFile,
+           let path = Bundle.main.path(forResource: fallbackJson, ofType: "json"),
+           let fallbackData = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+            return fallbackData
         }
 
-        return data
+        return nil
     }
 }
 

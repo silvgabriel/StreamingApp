@@ -22,7 +22,7 @@ struct EpisodeListView: View {
             .background(Color.episodeListBG)
             .showLoading(when: viewModel.requestState == .inProgress, name: String(format: "loading.title".localized, "episodes"))
             .task {
-                viewModel.fetchEpisodeList()
+                await viewModel.fetchEpisodeList()
             }
             .onChange(of: viewModel.requestState) {
                 if case .failed = viewModel.requestState {
@@ -33,7 +33,7 @@ struct EpisodeListView: View {
                 let button = Alert.Button.default(Text("tryAgain")) {
                     Task {
                         showAlertError = false
-                        viewModel.fetchEpisodeList()
+                        await viewModel.fetchEpisodeList()
                     }
                 }
 

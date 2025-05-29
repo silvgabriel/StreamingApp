@@ -18,7 +18,7 @@ struct ExtensionTests {
         }
 
         let user = User(name: "Gabriel")
-        let data = try user.encoded() ?? Data()
+        let data = try user.encoded()
         let decoded = try User.decoded(from: data)
 
         #expect(decoded == user)
