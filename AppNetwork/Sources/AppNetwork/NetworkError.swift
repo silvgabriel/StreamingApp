@@ -9,5 +9,5 @@ import Foundation
 
 public enum NetworkError: Error {
     case invalidURL
-    case requestFailed(data: Data)
+    case requestFailed(data: Data, triedLocalJson: Bool)
 }

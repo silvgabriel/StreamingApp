@@ -22,6 +22,7 @@ public protocol APIProtocol: Sendable {
     var method: HTTPMethod { get }
     var timeoutInterval: TimeInterval { get }
     var cachePolicy: URLRequest.CachePolicy { get }
+    var fallbackJSONFile: String? { get }
 }
 
 public extension APIProtocol {
@@ -30,6 +31,7 @@ public extension APIProtocol {
     var queryParameters: [URLQueryItem]? { nil }
     var timeoutInterval: TimeInterval { 15 }
     var cachePolicy: URLRequest.CachePolicy { .useProtocolCachePolicy }
+    var fallbackJSONFile: String? { nil }
 
     private func getURL() -> URL? {
         guard var components = URLComponents(string: baseURL) else { return nil }
