@@ -13,11 +13,19 @@ public class NetworkService<T: APIProtocol>: @unchecked Sendable {
     private let executor: NetworkExecutorProtocol
 
     // MARK: - Initializers
+    /// Initializes a new instance of NetworkService with the given executor.
+    /// - Parameter executor: The network executor to use for requests. Defaults to URLSession.shared.
     public init(executor: NetworkExecutorProtocol = URLSession.shared) {
         self.executor = executor
     }
 
     // MARK: - Public Methods
+    /// Sends a network request using the provided API data and optional request body.
+    /// - Parameters:
+    ///   - apiData: The API endpoint configuration conforming to APIProtocol.
+    ///   - body: An optional Encodable object to be sent as the request body.
+    /// - Returns: The response data from the network request or fallback JSON if available.
+    /// - Throws: NetworkError if the request fails and no fallback is available.
     public func request(_ apiData: T, body: Encodable? = nil) async throws -> Data {
         let urlRequest = try apiData.buildURLRequest(requestBody: body?.encoded())
         let (data, response) = try await executor.data(for: urlRequest)
