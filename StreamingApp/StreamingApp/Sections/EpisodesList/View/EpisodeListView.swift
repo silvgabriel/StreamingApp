@@ -52,10 +52,10 @@ struct EpisodeListView: View {
                 .padding(.bottom, 16)
 
             ForEach(viewModel.episodes, id: \.id) { episode in
-                EpisodeCardButtonView(episode: episode) {
+                EpisodeCardButtonView(episode: episode, animation: animation) {
                     selectedEpisode = episode
                 }
-                .matchedGeometryEffect(id: episode.title, in: animation)
+                .matchedTransitionSource(id: episode.title, in: animation)
             }
         }
         .padding(.horizontal, 16)

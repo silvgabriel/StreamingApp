@@ -11,6 +11,7 @@ struct EpisodeCardButtonView: View {
 
     // MARK: - Properties
     let episode: Episode
+    let animation: Namespace.ID
 
     var onTap: (() -> Void)
 
