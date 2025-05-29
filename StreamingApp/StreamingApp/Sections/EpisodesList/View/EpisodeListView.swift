@@ -45,7 +45,7 @@ struct EpisodeListView: View {
             }
     }
 
-    func content() -> some View {
+    private func content() -> some View {
         LazyVStack(alignment: .leading, spacing: 16) {
             Text("episodeList.title")
                 .font(.system(size: 34, weight: .bold))
