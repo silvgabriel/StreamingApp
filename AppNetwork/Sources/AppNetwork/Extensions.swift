@@ -15,19 +15,19 @@ internal extension URLResponse {
 }
 
 public extension Encodable {
-    func encoded() throws -> Data? {
-        try JSONEncoder().encode(self)
-    }
-}
-
-public extension Array where Element: Encodable {
-    func encode() throws -> Data? {
-        try JSONEncoder().encode(self)
+    func encoded(using encoder: JSONEncoder = JSONEncoder()) throws -> Data? {
+        try encoder.encode(self)
     }
 }
 
 public extension Decodable {
-    static func decoded(from data: Data) throws -> Self {
-        try JSONDecoder().decode(self, from: data)
+    static func decoded(from data: Data, using decoder: JSONDecoder = JSONDecoder()) throws -> Self {
+        try decoder.decode(self, from: data)
+    }
+}
+
+public extension Array where Element: Encodable {
+    func encoded(using encoder: JSONEncoder = JSONEncoder()) throws -> Data? {
+        try encoder.encode(self)
     }
 }

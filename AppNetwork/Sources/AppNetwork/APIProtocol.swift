@@ -32,13 +32,12 @@ public extension APIProtocol {
     var cachePolicy: URLRequest.CachePolicy { .useProtocolCachePolicy }
 
     private func getURL() -> URL? {
-        let urlString = "\(baseURL)\(path.starts(with: "/") ? "\(path)" : "/\(path)")"
+        guard var components = URLComponents(string: baseURL) else { return nil }
 
-        if let queryParameters {
-            return URL(string: urlString)?.appending(queryItems: queryParameters)
-        } else {
-            return URL(string: urlString)
-        }
+        components.path = path.starts(with: "/") ? path : "/" + path
+        components.queryItems = queryParameters
+
+        return components.url
     }
 
     internal func buildURLRequest(requestBody: Data? = nil) throws -> URLRequest {
