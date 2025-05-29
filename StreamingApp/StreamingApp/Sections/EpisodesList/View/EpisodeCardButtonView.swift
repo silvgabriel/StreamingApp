@@ -19,6 +19,7 @@ struct EpisodeCardButtonView: View {
             .buttonStyle(PressEffectButtonStyle())
     }
 
+    // MARK: - Private Methods
     private func buttonLabel() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
