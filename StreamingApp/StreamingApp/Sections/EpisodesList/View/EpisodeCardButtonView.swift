@@ -1,5 +1,5 @@
 //
-//  EpisodeCardView.swift
+//  EpisodeCardButtonView.swift
 //  StreamingApp
 //
 //  Created by Gabriel Monteiro Camargo da Silva on 29/05/25.
@@ -7,12 +7,19 @@
 
 import SwiftUI
 
-struct EpisodeCardView: View {
+struct EpisodeCardButtonView: View {
 
     // MARK: - Properties
     let episode: Episode
 
+    var onTap: (() -> Void)
+
     var body: some View {
+        Button(action: onTap, label: buttonLabel)
+            .buttonStyle(PressEffectButtonStyle())
+    }
+
+    private func buttonLabel() -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
                 Text(episode.title ?? "Episode")

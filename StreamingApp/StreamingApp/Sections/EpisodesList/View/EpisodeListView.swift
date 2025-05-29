@@ -22,8 +22,7 @@ struct EpisodeListView: View {
             .background(Color.episodeListBG)
             .showLoading(when: viewModel.requestState == .inProgress, name: String(format: "loading.title".localized, "episodes"))
             .task {
-                guard viewModel.episodes.isEmpty else { return }
-                await viewModel.fetchEpisodeList()
+                viewModel.fetchEpisodeList()
             }
             .onChange(of: viewModel.requestState) {
                 if case .failed = viewModel.requestState {
@@ -34,7 +33,7 @@ struct EpisodeListView: View {
                 let button = Alert.Button.default(Text("tryAgain")) {
                     Task {
                         showAlertError = false
-                        await viewModel.fetchEpisodeList()
+                        viewModel.fetchEpisodeList()
                     }
                 }
 
@@ -53,12 +52,9 @@ struct EpisodeListView: View {
                 .padding(.bottom, 16)
 
             ForEach(viewModel.episodes, id: \.id) { episode in
-                Button(action: {
+                EpisodeCardButtonView(episode: episode) {
                     selectedEpisode = episode
-                }, label: {
-                    EpisodeCardView(episode: episode)
-                })
-                .buttonStyle(PressEffectButtonStyle())
+                }
                 .matchedGeometryEffect(id: episode.title, in: animation)
             }
         }

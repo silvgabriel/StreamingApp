@@ -21,7 +21,7 @@ public extension Encodable {
     /// - Parameter encoder: The JSONEncoder to use. Defaults to a new JSONEncoder instance.
     /// - Throws: An error if encoding fails.
     /// - Returns: The encoded data.
-    func encoded(using encoder: JSONEncoder = JSONEncoder()) throws -> Data? {
+    func encoded(using encoder: JSONEncoder = JSONEncoder()) throws -> Data {
         try encoder.encode(self)
     }
 }

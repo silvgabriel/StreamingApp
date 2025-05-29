@@ -30,22 +30,28 @@ class EpisodeListViewModel {
     }
 
     // MARK: - Public Methods
-    func fetchEpisodeList(loadLocalJsonIfNecessary: Bool = true) async {
-        await MainActor.run {
-            requestState = .inProgress
-        }
-
-        do {
-            let responseData = try await service.request(.getList)
-            let decodedData: [Episode] = try [Episode].decoded(from: responseData)
+    func fetchEpisodeList(loadLocalJsonIfNecessary: Bool = true) {
+        Task {
+            guard await episodes.isEmpty else { return }
 
             await MainActor.run {
-                episodes = decodedData
-                requestState = .success
+                requestState = .inProgress
             }
-        } catch {
-            await MainActor.run {
-                requestState = .failed("request.failed".localized)
+
+            do {
+                let responseData = try await service.request(.getList)
+                let decodedData: [Episode] = try await Task.detached(priority: .userInitiated) {
+                    try [Episode].decoded(from: responseData)
+                }.value
+
+                await MainActor.run {
+                    episodes = decodedData
+                    requestState = .success
+                }
+            } catch {
+                await MainActor.run {
+                    requestState = .failed("request.failed".localized)
+                }
             }
         }
     }

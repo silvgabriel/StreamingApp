@@ -49,7 +49,7 @@ public extension APIProtocol {
     var timeoutInterval: TimeInterval { 15 }
     /// Default cache policy for the request.
     var cachePolicy: URLRequest.CachePolicy { .useProtocolCachePolicy }
-    /// Default local JSON file name for fallback responses (deprecated, use fallbackJSONFile).
+    /// Default local JSON file name for fallback responses
     var fallbackJSONFile: String? { nil }
 
     private func getURL() -> URL? {
