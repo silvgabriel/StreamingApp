@@ -18,7 +18,7 @@ struct ExtensionTests {
         }
 
         let user = User(name: "Gabriel")
-        let data = try user.encoded() ?? Data()
+        let data = try user.encoded()
         let decoded = try User.decoded(from: data)
 
         #expect(decoded == user)
@@ -31,7 +31,7 @@ struct ExtensionTests {
         }
 
         let books = [Book(title: "A"), Book(title: "B")]
-        let data = try books.encode() ?? Data()
+        let data = try books.encoded() ?? Data()
         let decoded = try JSONDecoder().decode([Book].self, from: data)
 
         #expect(decoded == books)

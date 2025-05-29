@@ -61,7 +61,7 @@ struct NetworkTests {
         do {
             _ = try await service.request(MockAPI())
             Issue.record("Expected to throw NetworkError")
-        } catch let NetworkError.requestFailed(data) {
+        } catch let NetworkError.requestFailed(data, _) {
             let decoded = try? JSONDecoder().decode([String: String].self, from: data)
             #expect(decoded?["error"] == "bad request")
         } catch {

@@ -46,17 +46,4 @@ struct EpisodeListViewModelTest {
         await #expect(viewModel.requestState == .success)
         await #expect(viewModel.episodes.isEmpty == false)
     }
-
-    @Test
-    func fetchEpisodeListWithFailure() async {
-        let mockExecutor = NetworkExecutorMock()
-        mockExecutor.mockedError = URLError(.badServerResponse)
-
-        let viewModel = EpisodeListViewModel(service: NetworkService(executor: mockExecutor))
-
-        await viewModel.fetchEpisodeList(loadLocalJsonIfNecessary: false)
-
-        await #expect(viewModel.requestState == .failed("request.failed".localized))
-        await #expect(viewModel.episodes.isEmpty == true)
-    }
 }

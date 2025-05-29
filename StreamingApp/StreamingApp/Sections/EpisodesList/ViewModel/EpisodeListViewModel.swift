@@ -30,33 +30,26 @@ class EpisodeListViewModel {
     }
 
     // MARK: - Public Methods
-    func fetchEpisodeList(loadLocalJsonIfNecessary: Bool = true) async {
+    func fetchEpisodeList() async {
+        guard await episodes.isEmpty else { return }
+
         await MainActor.run {
             requestState = .inProgress
         }
 
         do {
             let responseData = try await service.request(.getList)
-            let decodedData: [Episode] = try [Episode].decoded(from: responseData)
+            let decodedData: [Episode] = try await Task.detached(priority: .userInitiated) {
+                try [Episode].decoded(from: responseData)
+            }.value
 
             await MainActor.run {
                 episodes = decodedData
                 requestState = .success
             }
         } catch {
-            // API is down again, so I implemented a local json for backup
-            if loadLocalJsonIfNecessary, let path = Bundle.main.path(forResource: "response_mock", ofType: "json") {
-                let mockedData = try? Data(contentsOf: URL(fileURLWithPath: path))
-                let decodedData = try? [Episode].decoded(from: mockedData ?? Data())
-
-                await MainActor.run {
-                    episodes = decodedData ?? []
-                    requestState = .success
-                }
-            } else {
-                await MainActor.run {
-                    requestState = .failed("request.failed".localized)
-                }
+            await MainActor.run {
+                requestState = .failed("request.failed".localized)
             }
         }
     }

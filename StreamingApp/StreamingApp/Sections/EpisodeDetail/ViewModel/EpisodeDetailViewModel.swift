@@ -48,6 +48,7 @@ class EpisodeDetailViewModel {
     func setupPlayer() async {
         if let urlString = episode.videoURL, let videoURL = URL(string: urlString) {
             let asset = AVURLAsset(url: videoURL)
+            _ = try? await asset.load(.isPlayable)
             _ = try? await asset.load(.tracks, .duration, .preferredTransform)
 
             try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: [])

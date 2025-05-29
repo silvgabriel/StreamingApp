@@ -18,4 +18,7 @@ enum StreamingAPI: APIProtocol {
         "/v3/32195a4b-e6e5-4165-8b48-20fd995c1e43"
     }
 
+    var fallbackJSONFile: String? {
+        "response_mock"
+    }
 }
